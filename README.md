@@ -57,7 +57,6 @@ from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers import Dropout
 from tensorflow.keras.layers import BatchNormalization
 import tensorflow as tf
-import seaborn as sns
 from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import LabelEncoder
@@ -107,24 +106,6 @@ customers_1 = customers_1.drop('Var_1',axis=1)
 customers_1.dtypes
 # Calculate the correlation matrix
 corr = customers_1.corr()
-
-# Plot the heatmap
-sns.heatmap(corr, 
-        xticklabels=corr.columns,
-        yticklabels=corr.columns,
-        cmap="BuPu",
-        annot= True)
-sns.pairplot(customers_1)
-sns.distplot(customers_1['Age'])
-plt.figure(figsize=(10,6))
-sns.countplot(customers_1['Family_Size'])
-plt.figure(figsize=(10,6))
-sns.boxplot(x='Family_Size',y='Age',data=customers_1)
-plt.figure(figsize=(10,6))
-sns.scatterplot(x='Family_Size',y='Spending_Score',data=customers_1)
-plt.figure(figsize=(10,6))
-sns.scatterplot(x='Family_Size',y='Age',data=customers_1)
-customers_1.describe()
 customers_1['Segmentation'].unique()
 X=customers_1[['Gender','Ever_Married','Age','Graduated','Profession','Work_Experience','Spending_Score','Family_Size']].values
 y1 = customers_1[['Segmentation']].values
